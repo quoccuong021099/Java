@@ -1,0 +1,25 @@
+.card{
+width: 250px;
+margin: 10px; 
+}
+.card-body p {
+  margin: 0;
+}
+.card-body a {
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+}
+
+.container-card .card {
+ margin-top: 10px;
+}
+.card-img-top{
+height: 260px;
+}
+.form-inline .form-control{
+width: 140px;}
+
+.gh-bg{
+	background-color: red;
+}
