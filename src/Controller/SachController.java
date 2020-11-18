@@ -10,6 +10,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.jasper.tagplugins.jstl.core.Out;
+
 import bean.sachbean;
 import bo.loaibo;
 import bo.sachbo;
@@ -46,7 +48,6 @@ public class SachController extends HttpServlet {
 				else
 					dssach=sbo.getsach();
 			request.setAttribute("dssach", dssach);
-			
 			RequestDispatcher rd = request.getRequestDispatcher("sach1.jsp");
 			rd.forward(request, response);
 		} catch (Exception e) {

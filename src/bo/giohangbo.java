@@ -27,11 +27,12 @@ public class giohangbo {
 			//Hang trung`
 			for(giohangbean g: ds)
 				if(g.getMasach().equals(masach)) {
-					if(g.getSoluong()>=0) {
+					if(g.getSoluong()>0) {
 					g.setSoluong(g.getSoluong()-1);}
 					if(g.getSoluong()==0) {
-						g.setSoluong(g.getSoluong()+1);
+						g.setSoluong(0);
 					}
+					
 					return;
 				}
 			

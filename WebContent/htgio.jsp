@@ -56,12 +56,12 @@
 
 
  <div class="row">
-		<%
-			loaibo lbo=new loaibo();
-			ArrayList<loaibean> ds2=lbo.getloai();
-			int a=ds2.size();	
-		%>
-		<div class="col-3">
+			<%
+				loaibo lbo=new loaibo();
+				ArrayList<loaibean> ds2=lbo.getloai();
+				int a=ds2.size();
+			%>
+			<div class="col-3">
 		 <nav class="navbar navbar-light bg-light">
 		            <form class="form-inline m-auto" action="SachController" method="post">
 		              <input
@@ -86,6 +86,8 @@
 			</div>
 			<%}%>			
 		</div> 
+		
+	
 <div class="col-9">
 	<div class="row">	
 		<div class="col-9">
@@ -106,6 +108,7 @@
 				    		
 				    		<input class="btn btn-success" style="padding:0px 8px"name="btn2" type="submit" value="-">
 				    		<input class="btn btn-success" style="padding:0px 5px" name="btn3" type="submit" value="+">
+				    		
 				    		<br>	<br>	
 				    		<h5 class="card-text">Thành tiền: <br>	<%=g.getThanhtien() %> VND</h5>
 				    		<br>
@@ -152,14 +155,8 @@
 				}
 			%>	
 	</div>		
-</div>
-				
+</div>		
 </div> 
-
-
 </div>
-
-
-
 </body>
 </html>

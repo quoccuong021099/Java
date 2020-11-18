@@ -21,6 +21,8 @@
 <link rel="stylesheet" href="asset/plugins/font-awesome/css/all.min.css">
   <link rel="stylesheet" href="asset/css/index.css">
   <style>
+  body{
+  background-color: #F2F2F2;}
   .over{
   white-space: nowrap; 
   overflow: hidden;
@@ -34,9 +36,9 @@
 	  		<div class="container">
 			<a class="navbar-brand" href="TrangchuController"><i class="fa fa-atlas"></i> Nhà Sách Lạc Việt</a>
 			<ul class="navbar-nav navbar-right" >
-				<li class="nav-item"><a class="nav-link" href="#"><i
+				<li class="nav-item"><a class="nav-link" href="#" data-toggle="modal" data-target="#myModal1"><i
 								class="fa fa-history"></i> Lịch sử mua hàng</a></li>
-				<li class="nav-item"><a class="nav-link" href="DangnhapController"><i
+				<li class="nav-item"><a class="nav-link" href="#" data-toggle="modal" data-target="#myModal1"><i
 								class="fa fa-shopping-cart"></i> Giỏ hàng</a></li>
 				<li class="nav-item"><a class="nav-link" href="#" data-toggle="modal" data-target="#myModal"><i
 								class="fa fa-sign-in-alt"></i>Đăng ký</a></li>
@@ -111,14 +113,14 @@
 					        
 					        <!-- Modal body -->
 					        <div class="modal-body" style="width=1500px;">
-					          <form method="post" action="DangnhapController">
+					          <form method="post" action="LoginController">
 								  <div class="form-group">
 									  <label for="usr">Tên đăng nhập</label>
-									  <input type="text" name="txta" class="form-control" id="usr" required>
+									  <input type="text" name="txtusername" class="form-control" id="usr" required>
 								  </div>
 								  <div class="form-group">
 									  <label for="usr">Mật khẩu</label>
-									  <input type="password" name="txtb" class="form-control" id="usr" required>
+									  <input type="password" name="txtpassword" class="form-control" id="usr" required>
 								  </div>
 								  
 								  <div class="form-group">
@@ -150,7 +152,7 @@
 		<nav class="navbar navbar-light bg-light">
 			<form class="form-inline m-auto" action="TrangchuController" method="post">
 			  <div class="form-group">
-				<input class="form-control mr-sm-2" style="width:155px;" type="search" placeholder="Search..." name="txttk" />
+				<input class="form-control mr-sm-2" style="width:50%;" type="search" placeholder="Search..." name="txttk" />
 				<button class="btn btn-outline-success " type="submit" > Search</button>
 			  </div>
 			</form>
@@ -182,7 +184,7 @@
 		    <h5 class="card-title over"><%=ss.getTensach() %></h5>
 		    <p class="card-text over"><%=ss.getTacgia() %></p>
 		    <p class="card-text">Giá: <%=ss.getGia() %> VND</p>
-		    <a href="DangnhapController?ms=<%=ss.getMasach()%>&ts=<%=ss.getTensach()%>&tg=<%=ss.getTacgia()%>&gia=<%=ss.getGia()%>&ml=<%=ss.getMaloai()%>&anh=<%=ss.getAnh()%>"> 
+		    <a href="#" data-toggle="modal" data-target="#myModal1"> 
 		    <img alt="" src="asset/img/buynow.jpg"> </a> 
 		  </div>
 		</div> 

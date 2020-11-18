@@ -15,4 +15,5 @@ public class Dungchung {
 		cn = DriverManager.getConnection(url);
 		System.out.print("Da ket noi");
 	}
+private final String dbName= "DangNhap";
 }

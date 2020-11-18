@@ -28,20 +28,8 @@
 	 <img src="asset/img/canhbao.png" style="float: left">
 	 <br><br><br><br>
 	 <h1 >
-	<%String a1=request.getParameter("txta");
-	  String b1=request.getParameter("txtb");
-	  if(a1 != null && b1!=null){
-		  if(a1.equals("admin")){
-			 if(b1.equals("123"))
-				response.sendRedirect("SachController");
-			 else
-					out.print("Sai mật khẩu!");
-		}else	
-			
-			out.print("Tên đăng nhập không tồn tại!");
-				
-	}else
-		out.print("Vui lòng nhập tên đăng nhập và mật khẩu!");
+	<%
+		out.print("Sai tên đăng nhập hoặc mật khẩu!");
 	%>
 	</h1>
 	<br>
