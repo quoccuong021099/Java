@@ -42,7 +42,7 @@ public class DatmuaController extends HttpServlet {
 			gh.Them(ms, ts,tg, Long.parseLong(giatam), 1, ml, a); //b2: thay doi bien
 			session.setAttribute("gh", gh); //b3: luu bien vao session
 			/* response.sendRedirect("htgio.jsp"); *///chay ra trang htgio
-			RequestDispatcher rd = request.getRequestDispatcher("htgio.jsp");
+			RequestDispatcher rd = request.getRequestDispatcher("giohangController");
 			rd.forward(request, response);
 		}
 		

@@ -48,7 +48,7 @@ public class SachController extends HttpServlet {
 				else
 					dssach=sbo.getsach();
 			request.setAttribute("dssach", dssach);
-			RequestDispatcher rd = request.getRequestDispatcher("sach1.jsp");
+			RequestDispatcher rd = request.getRequestDispatcher("Trangchu.jsp");
 			rd.forward(request, response);
 		} catch (Exception e) {
 
