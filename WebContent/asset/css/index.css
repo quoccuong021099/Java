@@ -10,6 +10,29 @@ html {
   display: flex;
   justify-content: space-evenly;
   flex-wrap: wrap;
+}
+.card{
+width: 12rem;
+}
+.card-body p {
+  margin: 0;
+}
+.card-body a {
+  display: flex;
+  justify-content: center;
   margin-top: 10px;
-  align-items: flex-start;
+}
+.container-card {
+
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+.container-card .card {
+ margin-top: 10px;
+
+}
+.card-img-top{
+height: 250px;
+
 }

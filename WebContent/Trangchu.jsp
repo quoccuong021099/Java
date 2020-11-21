@@ -9,6 +9,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Book Store</title>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -16,16 +17,16 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
 <link rel="stylesheet" href="asset/plugins/font-awesome/css/all.min.css">
+<link rel="stylesheet" href="asset/css/index.css">
 <style>
-body{
-background-color: #fff;}
+
 .over{
   white-space: nowrap; 
   overflow: hidden;
   text-overflow: ellipsis;}
 .bg-success{
 background-color: #E0E6F8!important;
-}
+}	
   
  .timkiem{
  	position: relative;
@@ -43,17 +44,18 @@ background-color: #E0E6F8!important;
   left: 0px;
   z-index: 2; 	
  }
-
-}
+ 
+ 
 </style>
 </head>
 <body>
+
 <%String un = (String)session.getAttribute("tendangnhap");%>
 <%	loaibo lbo=new loaibo();
 	ArrayList<loaibean> ds2=lbo.getloai();
 	int a=ds2.size();	
-%>	
-<nav class="navbar navbar-expand-lg  navbar-dark bg-dark static-top ">
+%>
+<div class="navbar navbar-expand-lg  navbar-dark bg-dark static-top  ">
   <div class="container">
     <a class="navbar-brand" href="SachController"><i class="fa fa-atlas"></i> Nhà Sách Lạc Việt</a>
     <button class="navbar-toggler cde" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
@@ -95,71 +97,62 @@ background-color: #E0E6F8!important;
 	  		<li class="nav-item"><a class="nav-link" href="#" ><i
 					class="fa fa-history"></i> Lịch sử mua hàng</a></li>
 			<li class="nav-item"><a class="nav-link" href="giohangController" ><i
-			class="fa fa-shopping-cart"></i> Giỏ hàng</a></li>
+			class="fa fa-shopping-cart"></i> Giỏ hàng
 			<% giohangbo gh1=(giohangbo)session.getAttribute("gh");%>
 	          	<% if (gh1==null){ %>
-	         		 	<h6 style="text-align:center; color:#fff; ">0</h6>
+	         		 	<h6 style=" display:inline-block; color:#fff; ">(0)</h6>
 	          	<%} %>
 	          	<%if(gh1!=null){ %>
-	          			<h6 style="text-align:center; color:#fff; "> <%=gh1.ds.size() %> </h6>
-	        <%} %>
+	          			<h6 style=" display:inline-block; color:#fff; "> (<%=gh1.ds.size() %>) </h6>
+	        <%} %></a></li>
 			<li class="nav-item"><a class="nav-link" href="LogoutController" ><i
 					class="fa fa-sign-in-alt"></i>Đăng xuất</a></li>
 		<%}%>
       </ul>
     </div>
   </div>
-</nav>
+</div>
 
-<nav class="navbar navbar-expand-lg  navbar-dark bg-success">
+<div class="navbar navbar-expand-lg  navbar-dark bg-success">
 	<div class="container">
 		<div class="row">
 			<% for(int i=0;i<a;i++){ %>
-			<button class="btn col-3"><a href="SachController?maloai=<%=ds2.get(i).getMaloai()%>" ><%=ds2.get(i).getTenloai() %></a></button>
+			<button class="btn col-lg-3 col-md-4  col-6"><a href="SachController?maloai=<%=ds2.get(i).getMaloai()%>" ><%=ds2.get(i).getTenloai() %></a></button>
 			<%}%>
 		</div>	
 	</div>
-</nav>
-
-
-
-<%
-		ArrayList<loaibean> dsloai = (ArrayList<loaibean>)request.getAttribute("dsloai");
-		ArrayList<sachbean> ds= (ArrayList<sachbean>)request.getAttribute("dssach");
-		int n=ds.size();
-	  %>
- 	<div class="container-card">
- 	<% for(int i=0;i<n;i++){ 
-		
-	%>
-		<div class="card" style="width: 250px; margin-top: 20px;">
-		<% sachbean ss=ds.get(i); %>
-		 <img  class="card-img-top" style="height: 250px;" alt="" src="<%=ss.getAnh() %>">
-		  <div class="card-body">
-		    <h5 class="card-title over"><%=ss.getTensach() %></h5>
-		    <p class="card-text over"><%=ss.getTacgia() %></p>
-		    <p class="card-text">Giá: <%=ss.getGia() %> VND</p>
-		    
-		    <%if(un== null){%>
-			<a
+</div>
+<% ArrayList<loaibean> dsloai = (ArrayList<loaibean>)request.getAttribute("dsloai");
+	ArrayList<sachbean> ds= (ArrayList<sachbean>)request.getAttribute("dssach");
+	int n=ds.size();%>
+<div class="container">
+<div class="row">
+<% for(int i=0;i<n;i++){ sachbean ss=ds.get(i); %>
+  <div class="col-lg-3 col-md-4 col-sm-6 col-12">
+  <div class="card m-2" style="width:250px">
+    <img class="card-img-top" src="<%=ss.getAnh() %>" alt="Card image" style="width:100%;height:250px;">
+    <div class="card-body">
+      <h4 class="card-title over"><%=ss.getTensach() %></h4>
+      <p class="card-text over"><%=ss.getTacgia() %></p>
+      <p class="card-text">Giá: <%=ss.getGia()%> VND</p>
+      <%if(un== null){%>
+			<a 
 				href="#" data-toggle="modal" data-target="#myModal1">
 				<img alt="" src="asset/img/buynow.jpg">
-			</a>
-			
-			<%} %>
+			</a> <%} %>
 		    <%if(un!= null){%>
-		    <a
+		    <a 
 				href="DatmuaController?ms=<%=ss.getMasach()%>&ts=<%=ss.getTensach()%>&tg=<%=ss.getTacgia()%>&gia=<%=ss.getGia()%>&ml=<%=ss.getMaloai()%>&anh=<%=ss.getAnh()%>">
 				<img alt="" src="asset/img/buynow.jpg">
 			</a>
-			<%} %>
-			
-		  </div>
-		</div> 
-	<%} %>
-	</div>	
+		<%} %>
+    </div>
+  </div>
+  </div>
+<%} %>
+</div>
 
-
+</div>
 <!-- Modal -->
 <!-- The Modal đăng ký -->
 <div class="modal" id="myModal">
@@ -239,7 +232,6 @@ background-color: #E0E6F8!important;
         </div>
       </div>
     </div>
-</div>
-  
+</div> 
 </body>
 </html>
