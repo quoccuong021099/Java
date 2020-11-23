@@ -1,9 +1,9 @@
-<%@page import="bean.giohangbean"%>
-<%@page import="bean.sachbean"%>
 <%@page import="bean.loaibean"%>
-<%@page import="java.util.ArrayList"%>
 <%@page import="bo.loaibo"%>
 <%@page import="bo.giohangbo"%>
+<%@page import="dao.LSMHdao"%>
+<%@page import="bean.viewbean"%>
+<%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -11,15 +11,14 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Book Store</title>
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+<linkhref="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,400;0,500;0,900;1,300;1,400;1,500;1,700&display=swap"
+	rel="stylesheet">
+<link rel="stylesheet"
+	href="asset/plugins/bootstrap/css/bootstrap.min.css">
 <link rel="stylesheet" href="asset/plugins/font-awesome/css/all.min.css">
 <link rel="stylesheet" href="asset/css/index.css">
-<style>
+<title>Insert title here</title>
+<style type="text/css">
 
 .over{
   white-space: nowrap; 
@@ -45,21 +44,11 @@ background-color: #E0E6F8!important;
   left: 0px;
   z-index: 2; 	
  }
- .fixed-bottom{
- background-color: #343a40;
- height: 7%;
- }
- .margin{
- margin-top: 100px}
- .position{
- position:absolute;
- right: 0;
- padding: 10px;
- }
+ 
 </style>
 </head>
-<body>
 
+<body>
 <%String un = (String)session.getAttribute("tendangnhap");%>
 <%	loaibo lbo=new loaibo();
 	ArrayList<loaibean> ds2=lbo.getloai();
@@ -104,7 +93,7 @@ background-color: #E0E6F8!important;
 			        	<button class="btn btn-outline-success my-2 my-sm-0 "  type="submit">Search</button>
 			    </form>
 	        </li>
-	  		<li class="nav-item"><a class="nav-link" href="LSMHController" ><i
+	  		<li class="nav-item"><a class="nav-link" href="LSMH.jsp" ><i
 					class="fa fa-history"></i> Lịch sử mua hàng</a></li>
 			<li class="nav-item"><a class="nav-link" href="giohangController" ><i
 			class="fa fa-shopping-cart"></i> Giỏ hàng
@@ -123,50 +112,48 @@ background-color: #E0E6F8!important;
   </div>
 </div>
 
-<div class="navbar navbar-expand-lg  navbar-dark bg-success">
-	<div class="container">
-		<div class="row">
-			<% for(int i=0;i<a;i++){ %>
-			<a class="btn col-lg-3 col-md-4  col-6" href="SachController?maloai=<%=ds2.get(i).getMaloai()%>" ><%=ds2.get(i).getTenloai() %></a>
-			<%}%>
-		</div>	
-	</div>
-</div>
-<div class="container">
 
-<div class="row">	
-<div class="col-12">
-	<h2 class="text-center">Giỏ hàng</h2>
-	<div class="container-card">
-	<% giohangbo gh=(giohangbo) session.getAttribute("gh"); if(gh!=null){ for(giohangbean g: gh.ds){ %>
-			<div class="card" style="width: 250px;">
-			 <img  class="card-img-top" style="height: 250px;" alt="" src="<%=g.getAnh() %>">
-			  <div class="card-body">
-			    <h5 class="card-title over"><%=g.getTensach() %></h5>
-			    <p class="card-text over"><%=g.getTacgia() %></p>	
-			    <form method="post" action="SuaController?ms=<%=g.getMasach()%>">
-		    		<input style=" width: 100px" name="txtsl" type="text" min="1" value="<%=g.getSoluong()%>">
-		    		<input class="btn btn-success" style="padding:0px 8px"name="btn2" type="submit" value="-">
-		    		<input class="btn btn-success" style="padding:0px 5px" name="btn3" type="submit" value="+"> 
-		    		<h5 class="card-text" style="font-size:18px">Thành tiền: <%=g.getThanhtien() %> VND</h5>
-		    		<button class="btn btn-danger"><a style="margin-top:0;color:#fff;" href="XoaController?ms=<%=g.getMasach()%>">Delete</a></button>
-		    		<!-- <button class="btn btn-success"><a style="margin-top:0;margin-left:0;color:#fff;" href="#">Thanh Toán</a></button> -->
-		  		</form>
-			  </div>
-			</div> 
-		<%}} %>
-	</div>	
+<%String un1 = (String)session.getAttribute("tendangnhap"); if(un1 == un){%>
+
+<div class="container">
+	<h4 >Lịch sử mua hàng</h4>
+	
+	<table class="container table table-hover table-border">
+		<tr>
+			<td>Mã KH</td>
+			<td>Họ Tên</td>
+			<td>Tên Sách</td>
+			<td>Ngày Mua</td>
+			<td>Địa Chỉ</td>
+			<td>Số Lượng</td>
+			<td>Giá</td>
+			<td>Thành Tiền</td>
+		</tr>
+
+		 <%
+			LSMHdao vdao = new LSMHdao();
+		ArrayList<viewbean>listview = vdao.getview();
+		for (viewbean ab : listview) {
+		%>
+
+		<tr>
+			<td><%=ab.getMakh()%></td>
+			<td><%=ab.getHoten()%></td>
+			<td><%=ab.getTensach()%></td>
+			<td><%=ab.getNgaymua()%></td>
+			<td><%=ab.getDiachi()%> </td>
+			<td><%=ab.getSoluong()%></td>
+			<td><%=ab.getGia()%>VNĐ</td>
+			<td><%=ab.getTt()%>VNĐ</td>
+		</tr>
+		<%
+			}
+		%> 
+	</table>
 </div>
-<div class="container margin">
-<% giohangbo ab=(giohangbo) session.getAttribute("gh"); if (ab != null) { %>
-	<div class="fixed-bottom">
-		<div class="position">
-	     <h4 style="margin-right:30px;  display: inline-block; color:#fff;!important">Tổng tiền: <%=gh.tongtien()%>đ</h4>
-	   	 <a class="tiep-tuc-mua-hang btn btn-primary"  href="HoaDonController">Thanh Toán</a> 
-	   	 <a class="tiep-tuc-mua-hang btn btn-primary"  href="SachController">Tiếp tục mua hàng</a> 
-	   	</div> 
-	<% } else { %> <h5 class="text-center">Không có sản phẩm nào trong giỏ hàng!</h5> <% }  %>	
-	</div>		
-</div>	
+<%} %>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>

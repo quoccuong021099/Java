@@ -94,7 +94,7 @@ background-color: #E0E6F8!important;
 			        	<button class="btn btn-outline-success my-2 my-sm-0 "  type="submit">Search</button>
 			    </form>
 	        </li>
-	  		<li class="nav-item"><a class="nav-link" href="#" ><i
+	  		<li class="nav-item"><a class="nav-link" href="LSMH.jsp" ><i
 					class="fa fa-history"></i> Lịch sử mua hàng</a></li>
 			<li class="nav-item"><a class="nav-link" href="giohangController" ><i
 			class="fa fa-shopping-cart"></i> Giỏ hàng
@@ -117,7 +117,7 @@ background-color: #E0E6F8!important;
 	<div class="container">
 		<div class="row">
 			<% for(int i=0;i<a;i++){ %>
-			<button class="btn col-lg-3 col-md-4  col-6"><a href="SachController?maloai=<%=ds2.get(i).getMaloai()%>" ><%=ds2.get(i).getTenloai() %></a></button>
+			<a class="btn col-lg-3 col-md-4  col-6" href="SachController?maloai=<%=ds2.get(i).getMaloai()%>" ><%=ds2.get(i).getTenloai() %></a>
 			<%}%>
 		</div>	
 	</div>

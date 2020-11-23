@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.websocket.Session;
 
+import bo.dangnhapbo;
 import dao.DangNhapDao;
 
 import java.sql.*;
@@ -23,10 +24,24 @@ public class LoginController extends HttpServlet {
         super();
     }
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		
+		request.setCharacterEncoding("utf-8"); //lâìy dýÞ lên bãÌng unicode
+		response.setCharacterEncoding("utf-8");
+		  String un=request.getParameter("txtun"); 
+		  String pass=request.getParameter("txtpass"); 
+		  HttpSession session=request.getSession(); dangnhapbo dn= new dangnhapbo(); 
+		  try{
+		 if(dn.KtDangNhap(un, pass)) 
+			 session.setAttribute("un", un); 	 
+		 	else
+		 session.setAttribute("un", ""); response.sendRedirect("SachController");
+		  }catch(Exception tt){ tt.printStackTrace(); }
+		 
 	}
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
 		try {
 			String un = request.getParameter("txtun");
 			String pass = request.getParameter("txtpass");
@@ -46,5 +61,5 @@ public class LoginController extends HttpServlet {
 			e.printStackTrace();
 		}
 	}
-	}
-
+	
+}

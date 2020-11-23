@@ -35,7 +35,7 @@ public class DatmuaController extends HttpServlet {
 			giohangbo gh;
 			//neu mua hang dau tien
 			if(session.getAttribute("gh")==null){
-				gh=new giohangbo(); //taòo gioÒ haÌng
+				gh=new giohangbo(); //taÌ£o gioÌ‰ haÌ€ng
 				session.setAttribute("gh", gh); //khoi tao session
 			}
 			gh=(giohangbo)session.getAttribute("gh");//b1: lay session gan ra bien

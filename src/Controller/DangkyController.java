@@ -41,8 +41,7 @@ public class DangkyController extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		try {
-			Random makh = new Random();
-			int ID= makh.nextInt();
+			
 			String hoten = request.getParameter("txtname");
 			String diachi = request.getParameter("txtdiachi");
 			String sodt = request.getParameter("sodt");
@@ -52,16 +51,15 @@ public class DangkyController extends HttpServlet {
 			
 			Dungchung dc =new Dungchung();dc.KetNoi();
 			//B2 thiet lap cau lenh
-			String sql="insert into KhachHang values(?,?,?,?,?,?,?)";
+			String sql="insert into KhachHang values(?,?,?,?,?,?)";
 			//B3 lấy dữ liệu
 			PreparedStatement cmd = dc.cn.prepareStatement(sql);
-			cmd.setInt(1,ID);
-			cmd.setString(2,hoten);
-			cmd.setString(3,diachi);
-			cmd.setString(4,sodt);
-			cmd.setString(5,email);
-			cmd.setString(6,un);
-			cmd.setString(7,pass);cmd.executeUpdate();
+			cmd.setString(1,hoten);
+			cmd.setString(2,diachi);
+			cmd.setString(3,sodt);
+			cmd.setString(4,email);
+			cmd.setString(5,un);
+			cmd.setString(6,pass);cmd.executeUpdate();
 			RequestDispatcher rd = request.getRequestDispatcher("LoginController");
 			rd.forward(request, response);
 		} catch (Exception e) {
